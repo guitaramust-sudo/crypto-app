@@ -1,0 +1,87 @@
+@use 'helpers' as *;
+
+html {
+    &.is-lock {
+        overflow: hidden;
+    }
+
+}
+
+body{
+
+    font-family: var(--font-family-base);
+    letter-spacing: -0.03em;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+main {
+    flex-grow: 1;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+    font-family: var(--font-family-accent); 
+    font-weight: 500;
+}
+
+
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-weight: 600;
+}
+
+input, 
+a, 
+button,
+label,
+textarea,
+select,
+svg * {
+    transition-duration: var(--transition-duration);
+}
+
+a {
+    color: inherit;
+    &[class] { 
+        text-decoration: none;
+    }
+
+    @include hover{
+        color: var(--color-accent)
+    }
+}
+
+:focus-visible {
+    outline: rem(2) dashed var(--color-light);
+    outline-offset: rem(4);
+    text-decoration: 0s !important;
+}
+
+a,
+button {
+    &[title] {
+        position: relative;
+
+        &::before {
+            @include abs-center;
+            @include square(rem(44))
+        }
+    }
+}

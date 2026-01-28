@@ -1,0 +1,46 @@
+@use '../helpers/' as *;
+
+.sider {
+  padding: 1rem;
+  background-color: blueviolet;
+  
+  .ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+
+  &__card {
+    @include fluid-text(14, 12);
+  }
+
+  .ant-card-head-title {
+    @include fluid-text(22, 16);
+    white-space: wrap;
+    text-overflow: clip;
+    text-align: center;
+  }
+
+  .ant-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: rem(20);
+    }
+}
+
+.modal {
+    display: flex;
+    gap: rem(15);
+    align-items: center;
+
+    &__info {    
+        display: flex;
+        align-items: center;
+    }
+
+    .ant-typography {
+        margin-bottom: 0em;
+    }
+
+}

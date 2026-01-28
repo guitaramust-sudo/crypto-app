@@ -1,0 +1,11 @@
+@use 'normalize';
+@use 'fonts';
+@use 'variables';
+@use 'globals';
+@use 'utils';
+@use 'helpers' as *;
+
+@use './blocks/header';
+@use './blocks/footer';
+@use './blocks/sider';
+@use './blocks/content';

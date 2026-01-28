@@ -1,0 +1,9 @@
+@use "../helpers/" as *;
+
+.content {
+  text-align: center;
+  min-height: calc(100vh - rem(120));
+  line-height: 120px;
+  color: #fff;
+  background-color: #001529;
+}
