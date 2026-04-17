@@ -1,18 +1,43 @@
-@use '../helpers/' as *;
+@use "../helpers/" as *;
 
 .sider {
   padding: 1rem;
   background-color: blueviolet;
-  
+
+  // Ant Design по умолчанию ставит фиксированную ширину инлайново,
+  // поэтому используем !important для перекрытия на мобильных устройствах
+  @media (max-width: 768px) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
   .ant-layout-sider-children {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-  }
 
+    // Позволяем карточкам выстраиваться в ряд, если места много (например, на планшетах)
+    @media (max-width: 768px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
 
   &__card {
     @include fluid-text(14, 12);
+
+    @media (max-width: 768px) {
+      width: calc(50% - 0.5rem); // Две карточки в ряд на планшетах
+      min-width: 280px;
+    }
+
+    @media (max-width: 480px) {
+      width: 100%; // Одна карточка на телефонах
+    }
   }
 
   .ant-card-head-title {
@@ -23,24 +48,8 @@
   }
 
   .ant-card-body {
-      display: flex;
-      flex-direction: column;
-      gap: rem(20);
-    }
-}
-
-.modal {
     display: flex;
-    gap: rem(15);
-    align-items: center;
-
-    &__info {    
-        display: flex;
-        align-items: center;
-    }
-
-    .ant-typography {
-        margin-bottom: 0em;
-    }
-
+    flex-direction: column;
+    gap: rem(20);
+  }
 }
