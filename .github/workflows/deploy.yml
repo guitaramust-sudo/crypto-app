@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,32 +11,22 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
-          # Указываем путь к файлу блокировки для корректного кеширования
-          cache-dependency-path: src/package-lock.json
 
       - name: Install dependencies
-        # Переходим в папку src перед выполнением npm install
         run: npm install
-        working-directory: ./src
 
       - name: Build
-        # Переходим в папку src перед выполнением npm run build
         run: npm run build
-        working-directory: ./src
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -44,8 +34,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Путь до итоговой сборки относительно корня репозитория
-          path: "./src/dist"
+          # Указываем путь до dist, так как она в корне
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
